@@ -4,29 +4,32 @@
 // console.log("Hola Camada 2");
 function iniciarJuego() {
 
-    // bandera
-    let verificacion = typeof nombre === "string";
+    
 
     // Saludamos al usuario
     alert("Bienvenido al el popular juego de piedra, papel o tijera de Frontend 2")
 
     // Guardamos en una variable el nombre del jugador
-    let nombre = prompt("Ingrese su nombre:")
+    let nombre;
 
+  let letras;
 
       // Verificamos el nombre ingresado
-      while (verificacion) {
-        nombre = prompt("Ingrese su nombre:")
-        
-        verificacion = false
-      }
+   do {
+    nombre = prompt("Ingrese su nombre:");
 
-  /*  if (verificacion) {
-       
-    } else{
-        alert(`Gracias por jugar ${nombre}. ¡Mucha suerte!`)
-    }*/
-    
+    nombre = nombre.trim().toUpperCase();
+
+    letras = /^[a-zA-Z]+$/;
+
+    if (nombre.length < 3 || !letras.test(nombre)) {
+      alert("El nombre es incorrecto")
+    }
+
+   } while (nombre.length < 3 || nombre.length == 0 || !letras.test(nombre));
+
+
+   alert(`Gracias por jugar ${nombre}. ¡Mucha suerte!`);   
 
     // mostramos los datos por consola
     console.log("------------------------------");
