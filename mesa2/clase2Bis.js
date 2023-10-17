@@ -16,7 +16,8 @@
 // Primero debemos limpiar los scripts anteriores y dejar solo las funciones, quitamos las variables y las empezamos a declarar solo en este script
 let puntajes = {
     usuario: 0,
-    computadora: 0
+    computadora: 0,
+    empates: 0
 }
 
 const nombreDelJugador = iniciarJuego()
@@ -29,12 +30,25 @@ while (puntajes.usuario < 2 && puntajes.computadora < 2) {
 
     if (RESUTADO_PARTIDA.includes("ganaste")) {
         puntajes.usuario++
+        console.log(`${nombreDelJugador} tiene ${puntajes.usuario} partida ganada`)
     } else if (RESUTADO_PARTIDA.includes("perdiste")) {
         puntajes.computadora++
+        console.log(`La computadora tiene ${puntajes.computadora} partida ganada`)
+    } else if(RESUTADO_PARTIDA.includes("empate")){
+        puntajes.empates++
+        console.log(`Se dió ${puntajes.empates} empate entre la computadora y ${nombreDelJugador}`)
+
     }
 
     console.log(puntajes)
 }
+
+
+// Resultado final
+console.log("----------- Resultado final de la partida ---------------")
+console.log(`${nombreDelJugador} tiene ${puntajes.usuario} partida ganada`)
+console.log(`La computadora tiene ${puntajes.computadora} partida ganada`)
+console.log(`Se dieron ${puntajes.empates} empates entre la computadora y ${nombreDelJugador}`)
 
 
 
