@@ -57,27 +57,28 @@ function eliminarAlbum() {
   // desarrollar la función 👇
   // document.addEventListener("keydown", (e) => {
 
-    //Detectamos el evento keydown cuando presionamos la tecla f
+  //Detectamos el evento keydown cuando presionamos la tecla f
   window.addEventListener("keydown", (e) => {
+    if (e.key == "f") {
+      // Lanzo un prompt para que el usuario escriba el album
+      const deleteAlbum = prompt("Escribe el album que deseas eliminar:");
 
-    // Lanzo un prompt para que el usuario escriba el album
-    const deleteAlbum = prompt("Escribe el album que deseas eliminar:");
-
-    //Busco el album seleccionado 
-    let albumEncontrado = albumesFamosos.findIndex((album) => album.nombre === deleteAlbum)
+      //Busco el album seleccionado
+      let albumEncontrado = albumesFamosos.findIndex(
+        (album) => album.nombre === deleteAlbum
+      );
       console.log(albumEncontrado);
-    if(albumEncontrado >= 0){
-      albumesFamosos.splice(albumEncontrado, 1)
-      renderizarAlbumes(albumesFamosos)
-      marcarFavorito()
-      mostrarDatosEnPerfil(albumesFamosos);
-      console.log("Album eliminado");
-    } else{
-      console.log("No se encontro el album que desea eliminar");
+      if (albumEncontrado >= 0) {
+        albumesFamosos.splice(albumEncontrado, 1);
+        renderizarAlbumes(albumesFamosos);
+        marcarFavorito();
+        mostrarDatosEnPerfil(albumesFamosos);
+        console.log("Album eliminado");
+      } else {
+        console.log("No se encontro el album que desea eliminar");
+      }
     }
-
   });
-
 }
 
 eliminarAlbum();
