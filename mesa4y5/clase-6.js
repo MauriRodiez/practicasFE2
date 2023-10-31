@@ -67,7 +67,9 @@ function eliminarAlbum() {
       let albumEncontrado = albumesFamosos.findIndex(
         (album) => album.nombre === deleteAlbum
       );
+
       console.log(albumEncontrado);
+      
       if (albumEncontrado >= 0) {
         albumesFamosos.splice(albumEncontrado, 1);
         renderizarAlbumes(albumesFamosos);

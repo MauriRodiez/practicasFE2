@@ -13,11 +13,11 @@
   --border-gray: 2px solid darkgray;
 }
 
-#sitio{
+#sitio {
   padding: 2em;
 }
 
-section{
+section {
   margin: 25px 0;
 }
 h1 {
@@ -66,6 +66,7 @@ button:hover {
   display: flex;
   justify-content: space-around;
 }
+
 .caja {
   width: 30%;
   text-align: center;
@@ -80,7 +81,7 @@ button:hover {
   transition: box-shadow 0.5s;
 }
 
-.dark{
+.dark {
   background-color: black;
   color: white;
 }
@@ -115,6 +116,6 @@ button:hover {
   margin-bottom: 1.5rem;
 }
 
-.oculto{
+.oculto {
   visibility: hidden;
 }

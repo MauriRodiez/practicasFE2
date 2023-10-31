@@ -73,12 +73,12 @@ function recorrerListadoYRenderizarTarjetas() {
 
   materias.innerHTML = "";
 
-  listado.forEach( lenguaje => {
+  listado.forEach( ficha => {
     materias.innerHTML += `
       <div class="caja">
-        <img src="${lenguaje.imgUrl} alt="${lenguaje.lenguajes}" />
-        <p class="lenguajes">${lenguaje.lenguajes}<p/>
-        <p class="bimestre">${lenguaje.bimestre}<p/>
+        <img src="${ficha.imgUrl}" alt="${ficha.lenguajes}" />
+        <p class="lenguajes">Lenguajes: ${ficha.lenguajes}<p/>
+        <p class="bimestre">Bimestre: ${ficha.bimestre}<p/>
       </div>
     `
   });
@@ -89,7 +89,7 @@ function recorrerListadoYRenderizarTarjetas() {
 function alternarColorTema() {
   /* --------------------- PUNTO 4: Escribe tu codigo aqui --------------------- */
  
-  const web = document.querySelector("body");
+  const web = document.querySelector("#sitio");
 
   web.classList.toggle("dark")
   
@@ -99,3 +99,18 @@ function alternarColorTema() {
 
 /* --------------------- PUNTO 5: Escribe tu codigo aqui --------------------- */
 
+function mostrarTexto() {
+
+  const txtOculto = document.querySelector("#sobre-mi")
+
+  window.addEventListener("keydown", (e) => {
+    
+    if (e.key == "f" || e.key == "F") {
+      txtOculto.setAttribute("class", "visibility: visible")       
+    }
+
+  })
+
+}
+
+mostrarTexto();
