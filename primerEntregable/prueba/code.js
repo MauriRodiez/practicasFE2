@@ -36,7 +36,17 @@ cambiarTema.addEventListener("click", alternarColorTema);
 function obtenerDatosDelUsuario() {
   /* --------------- PUNTO 1: Escribe tu codigo a partir de aqui --------------- */
 
-    datosPersona.nombre = prompt("Ingresa tu nombre: ").toUpperCase().trim()
+  let nameUser = "",
+      yearBorn,
+      city = "",
+      intrestJs,
+      letras = /^[a-zA-Z]+$/;   
+
+      
+  do {
+    nameUser = prompt("Ingresa tu nombre: ").toLowerCase().trim()
+  } while (!/^[a-zA-Z]+$/.test(nameUser) || nameUser === null || nameUser == " " || nameUser.length < 3);
+    
 
     let edad = parseInt(prompt("Ingresa el año en que naciste: "))
     let fecha = new Date();
@@ -45,6 +55,9 @@ function obtenerDatosDelUsuario() {
 
     datosPersona.ciudad = prompt("Ingresa la ciudad donde vives: ")
     datosPersona.interesPorJs = confirm("Te interesa Javascript?")
+
+    datosPersona.nombre = nameUser;
+
 
 }
 
