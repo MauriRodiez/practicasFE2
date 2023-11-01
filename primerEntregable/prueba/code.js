@@ -36,28 +36,39 @@ cambiarTema.addEventListener("click", alternarColorTema);
 function obtenerDatosDelUsuario() {
   /* --------------- PUNTO 1: Escribe tu codigo a partir de aqui --------------- */
 
-  let nameUser = "",
-      yearBorn,
-      city = "",
-      intrestJs,
-      letras = /^[a-zA-Z]+$/;   
+let nameUser = "",
+    yearBorn,
+    city = "",
+    intrestJs,
+    fecha = new Date(),
+    anioActual = fecha.getFullYear()
+        
+do {
+    nameUser = prompt("Ingresa tu nombre: ").toLowerCase().trim()     
+  } while (!/^[a-zA-Z]+$/.test(nameUser) || nameUser === null || nameUser == "" || nameUser.length < 3);
 
-      
-  do {
-    nameUser = prompt("Ingresa tu nombre: ").toLowerCase().trim()
-  } while (!/^[a-zA-Z]+$/.test(nameUser) || nameUser === null || nameUser == " " || nameUser.length < 3);
+  let usuarios = nameUser.split(" ")
+  nameUser = usuarios
+    .map((user) => user.charAt(0).toUpperCase() + user.slice(1))
+    .join(" ");
+
+do {
+    yearBorn = parseInt(prompt("Ingresa el año en que naciste: "))
+  } while (!/^\d{4}$/.test(yearBorn) || yearBorn === null || yearBorn == " ");
+
+do {
+    city = prompt("Ingresa la ciudad donde vives: ").toLowerCase().trim()
+    let ciudades = city.split(" ")
+    city = ciudades
+      .map((ciudad) => ciudad.charAt(0).toUpperCase() + ciudad.slice(1))
+      .join(" ");
+  } while (!/^[a-zA-Z]+$/.test(city) || city === null || city == "" || city.length < 3);
     
+datosPersona.interesPorJs = confirm("Te interesa Javascript?")
 
-    let edad = parseInt(prompt("Ingresa el año en que naciste: "))
-    let fecha = new Date();
-    let anioActual = fecha.getFullYear();
-    datosPersona.edad = parseInt(anioActual - edad);
-
-    datosPersona.ciudad = prompt("Ingresa la ciudad donde vives: ")
-    datosPersona.interesPorJs = confirm("Te interesa Javascript?")
-
-    datosPersona.nombre = nameUser;
-
+datosPersona.nombre = nameUser;
+datosPersona.edad = parseInt(anioActual - yearBorn);
+datosPersona.ciudad = city;
 
 }
 
