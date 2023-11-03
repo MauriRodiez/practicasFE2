@@ -39,18 +39,19 @@ function obtenerDatosDelUsuario() {
 let nameUser = "",
     yearBorn,
     city = "",
-    intrestJs,
+    interestJs,
     fecha = new Date(),
     anioActual = fecha.getFullYear()
         
 do {
     nameUser = prompt("Ingresa tu nombre: ").toLowerCase().trim()     
-  } while (!/^[a-zA-Z]+$/.test(nameUser) || nameUser === null || nameUser == "" || nameUser.length < 3);
-
-  let usuarios = nameUser.split(" ")
-  nameUser = usuarios
-    .map((user) => user.charAt(0).toUpperCase() + user.slice(1))
-    .join(" ");
+     if(/^[a-zA-Z\s]+$/.test(nameUser)){
+      let usuarios = nameUser.split(" ")
+      nameUser = usuarios
+        .map((user) => user.charAt(0).toUpperCase() + user.slice(1))
+        .join(" ");
+     }
+  } while (/^[0-9]+$/.test(nameUser) || nameUser === null || nameUser == "" || nameUser.length < 3);
 
 do {
     yearBorn = parseInt(prompt("Ingresa el año en que naciste: "))
@@ -58,17 +59,21 @@ do {
 
 do {
     city = prompt("Ingresa la ciudad donde vives: ").toLowerCase().trim()
-    let ciudades = city.split(" ")
-    city = ciudades
-      .map((ciudad) => ciudad.charAt(0).toUpperCase() + ciudad.slice(1))
-      .join(" ");
-  } while (!/^[a-zA-Z]+$/.test(city) || city === null || city == "" || city.length < 3);
+      if(/^[a-zA-Z\s]+$/.test(city)){
+        let ciudades = city.split(" ")
+        city = ciudades
+          .map((ciudad) => ciudad.charAt(0).toUpperCase() + ciudad.slice(1))
+          .join(" ");
+      }
+  } while (/^[0-9]+$/.test(city) || city === null || city == "" || city.length < 3);
     
-datosPersona.interesPorJs = confirm("Te interesa Javascript?")
+
+interestJs = confirm("Te interesa Javascript?")
 
 datosPersona.nombre = nameUser;
 datosPersona.edad = parseInt(anioActual - yearBorn);
 datosPersona.ciudad = city;
+datosPersona.interesPorJs = (interestJs) ? "Si" : "No"
 
 }
 
@@ -85,7 +90,7 @@ function renderizarDatosUsuario() {
   name.textContent = datosPersona.nombre;
   age.textContent = datosPersona.edad;
   city.textContent = datosPersona.ciudad;
-  interest.textContent = (datosPersona.interesPorJs) ? "Si" : " No"
+  interest.textContent = datosPersona.interesPorJs;
 
 }
 
