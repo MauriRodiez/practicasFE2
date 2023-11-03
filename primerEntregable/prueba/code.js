@@ -51,7 +51,7 @@ do {
         .map((user) => user.charAt(0).toUpperCase() + user.slice(1))
         .join(" ");
      }
-  } while (/^[0-9]+$/.test(nameUser) || nameUser === null || nameUser == "" || nameUser.length < 3);
+  } while (!isNaN(nameUser) || nameUser === null || nameUser == "" || nameUser.length < 3);
 
 do {
     yearBorn = parseInt(prompt("Ingresa el año en que naciste: "))
@@ -65,7 +65,7 @@ do {
           .map((ciudad) => ciudad.charAt(0).toUpperCase() + ciudad.slice(1))
           .join(" ");
       }
-  } while (/^[0-9]+$/.test(city) || city === null || city == "" || city.length < 3);
+  } while (!isNaN(city) || city === null || city == "" || city.length < 3);
     
 
 interestJs = confirm("Te interesa Javascript?")
@@ -120,10 +120,8 @@ function alternarColorTema() {
  
   const web = document.querySelector("#sitio");
 
-  web.classList.toggle("dark")
+  web.classList.toggle("dark");
   
-
-
 }
 
 /* --------------------- PUNTO 5: Escribe tu codigo aqui --------------------- */
@@ -135,7 +133,7 @@ function mostrarTexto() {
   window.addEventListener("keydown", (e) => {
     
     if (e.key == "f" || e.key == "F") {
-      txtOculto.setAttribute("class", "visibility: visible")       
+      txtOculto.classList.remove("oculto")   
     }
 
   })
