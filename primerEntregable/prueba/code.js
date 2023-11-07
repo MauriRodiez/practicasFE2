@@ -133,7 +133,7 @@ function mostrarTexto() {
   window.addEventListener("keydown", (e) => {
     
     if (e.key == "f" || e.key == "F") {
-      txtOculto.classList.remove("oculto")   
+      txtOculto.classList.remove("oculto") 
     }
 
   })
