@@ -164,7 +164,8 @@ formulario.addEventListener('submit', function (evento) {
 /* -------------------------------------------------------------------------- */
 /*                [5] FUNCION: Formulario completado con éxito                */
 /* -------------------------------------------------------------------------- */
-// Esta funcion se va a encargar de realizar la redirección cuando el formulario se complete correctamente.
+// Esta funcion se va a encargar de realizar la redirección cuando el formulario 
+// se complete correctamente.
 // Para eso debera cumplir con los siguientes requerimientos.
 // 1 - Deshabilitar el boton del formulario.
 // 2 - Esperar 3 segundos para redireccionar a la página de 
