@@ -6,25 +6,47 @@
 /* -------------------------------------------------------------------------- */
 /*           [6] FUNCION: Escuchamos el evento de carga de la página          */
 /* -------------------------------------------------------------------------- */
-window.addEventListener('load', function () {
+window.addEventListener("load", () => {
+  const user = recuperarDataDelStorage();
 
-})
+  renderizarElementos(user);
+
+  botonCerrarSesion();
+});
 
 /* -------------------------------------------------------------------------- */
 /*                 [7] FUNCION: Recuperar la info del storage                 */
 /* -------------------------------------------------------------------------- */
-function recuperarDataStorage() {
+function recuperarDataDelStorage() {
+  // buscamos la data almacenada en nuestro bolsillo (localStorage)
+  // const datosUsuario = localStorage.getItem("user")
+  // // console.log(datosUsuario);
 
+  // // necesito transformar esa info de datosUsuario para que sea legible por JS
+  // const datosParseados = JSON.parse(datosUsuario)
+  // // console.log(datosParseados);
+  const datosParseados = JSON.parse(localStorage.getItem("user"));
+
+  return datosParseados;
 }
-
 
 /* -------------------------------------------------------------------------- */
 /*                [8] FUNCION: Renderizamos la info en pantalla               */
 /* -------------------------------------------------------------------------- */
-function renderizarElementos(objeto) {
+function renderizarElementos(objetoJS) {
+  console.log(objetoJS);
+  console.log(objetoJS.email);
+  console.log(objetoJS.rol);
 
+  // <h4 id="email"></h4>
+  // <p id="perfil"></p>
+  const email = document.querySelector("#email");
+  const perfil = document.querySelector("#perfil");
+
+  // pintamos las propiedades en pantalla (renderizamos)
+  email.textContent = objetoJS.email;
+  perfil.innerText = objetoJS.rol;
 }
-
 
 /* ----------------------------- MESA DE TRABAJO ---------------------------- */
 /* -------------------------------------------------------------------------- */
@@ -48,6 +70,22 @@ function renderizarElementos(objeto) {
 // 7- Si el usuario acepta debe borrar todo el storage y redirigirlo a la pantalla de Login.
 
 function botonCerrarSesion() {
-    //    👇 desarrollar la función
+  //    👇 desarrollar la función
 
+    //Selecciono el div para agregar el boton
+  const boxSesion = document.querySelector(".user")
+
+    //Creo el boton
+  const btnClose = document.createElement("button")
+  btnClose.setAttribute("id", "close")
+  btnClose.style = "padding: 5px 20px; background: rgba(255,0,0,0.2); color: red; margin: 20px; border: 0; cursor: pointer;"
+  btnClose.innerHTML = `<span> Cerrar sesión <span/>`
+
+  boxSesion.appendChild(btnClose)
+
+  btnClose.addEventListener("click", function(){
+    
+  })
+
+  
 }
