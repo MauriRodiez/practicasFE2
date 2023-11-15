@@ -84,7 +84,7 @@ boton.addEventListener("click", () => {
    consultaAsincrona("endpoint") // la ruta es la correcta, entonces debería pasar por el then con el resultado esperado (el listado para iterar)
     // consultaAsincrona("endpointmal") // como el endpoint o direccion está mal me deberia recahazar la promesa y poder capturar con el catch para ver en que me equivoco
         .then((resultado => {
-            console.log(resultado);
+            //console.log(resultado);
             renderizarElementos(resultado)
         }))
         .catch( (error) => {
@@ -137,6 +137,27 @@ function consultaAsincrona(ruta) {
 
 function renderizarElementos(listado){
     // desarrollar la funcion 👇
-    console.log("hola");   
+    const box = document.querySelector(".comentarios")
+    
+    box.innerHTML = ""
+
+    //  listadoComentarios.forEach( comment => {
+    //      box.innerHTML += `
+    //          <div class = "comentario">
+    //          <h4> ${comment.email} </h4>
+    //          <p> ${comment.body} </p>
+    //          </div>
+    //     `
+    //  })
+
+     listado.map( (comment) => {
+        box.innerHTML += `
+            <div class = "comentario">
+            <h4> ${comment.email} </h4>
+            <p> ${comment.body} </p>
+            </div>
+       `
+    })
+
 
 }
