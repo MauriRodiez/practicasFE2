@@ -9,6 +9,11 @@
 window.addEventListener("load", () => {
   const user = recuperarDataDelStorage();
 
+  //Por si quiere loguearse alquien que no es usuario
+  if (!user) {
+    location.replace("index.html");
+  }
+
   renderizarElementos(user);
 
   botonCerrarSesion();
@@ -73,19 +78,26 @@ function botonCerrarSesion() {
   //    👇 desarrollar la función
 
     //Selecciono el div para agregar el boton
-  const boxSesion = document.querySelector(".user")
+  //const boxSesion = document.querySelector(".user")
 
     //Creo el boton
   const btnClose = document.createElement("button")
-  btnClose.setAttribute("id", "close")
+  btnClose.innerHTML = "Cerrar sesión"
   btnClose.style = "padding: 5px 20px; background: rgba(255,0,0,0.2); color: red; margin: 20px; border: 0; cursor: pointer;"
-  btnClose.innerHTML = `<span> Cerrar sesión <span/>`
+  document.querySelector(".user").appendChild(btnClose)
 
-  boxSesion.appendChild(btnClose)
+  //boxSesion.appendChild(btnClose)
 
-  btnClose.addEventListener("click", function(){
-    
+  btnClose.addEventListener("click", function(){   
+    const cerrar = confirm("¿Seguro desea cerrar sesión?")
+    if (cerrar) {
+      localStorage.clear();
+      location.replace("./index.html");
+    }
+
   })
+
+    
 
   
 }
