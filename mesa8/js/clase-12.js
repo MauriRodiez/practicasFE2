@@ -7,17 +7,37 @@
 /* -------------------------------------------------------------------------- */
 // En este caso vamos a consultar a un servidor del cual nos vamos a traer la data.
 // Esta API tiene su documentación en: https://jsonplaceholder.typicode.com/
+
 // Vamos a implementar el endpoint que nos devuelve comentarios para mostrarlos en pantalla.
 
 function consultaApi(endpoint) {
-
+    fetch(endpoint)
+        .then( respuestaEnJSON => {
+            //console.log(respuestaEnJSON);
+            if(!respuestaEnJSON.ok){
+                return Promise.reject(respuestaEnJSON)
+            }
+            return respuestaEnJSON.json()
+        })
+        .then( datoJs => {
+            //console.log(datoJs);
+            renderizarElementos(datoJs)
+        })
+        .catch( err => console.log(err.statusText))
 }
 
 /* -------------------------------------------------------------------------- */
 /*                      [5] FUNCION: Escuchamos el click                      */
 /* -------------------------------------------------------------------------- */
 // Vamos a reimplementar la escucha del click lanzar las nuevas funciones.
+const boton = document.querySelector("button");
+const endpoint = 'https://jsonplaceholder.typicode.com/commentsa';
 
+boton.addEventListener("click", () => {
+    //console.log("click para ver comentario . . . ");
+    consultaApi(endpoint)
+    //console.log("Fin de la carga de comentarios");
+})
 
 
 /* -------------------------------------------------------------------------- */
@@ -25,7 +45,32 @@ function consultaApi(endpoint) {
 /* -------------------------------------------------------------------------- */
 // Acá vamos a reutilizar la función de renderizar renderizarElementos, implementando
 // el .map() y .join() para obtener el resultado esperado.
+function renderizarElementos(listado){
+    //console.log(listado);
+    const comentarios = document.querySelector(".comentarios")
 
+    //Renderizado con foreach * * * * * * * * * * 
+    // comentarios.innerHTML = ""
+    // listado.forEach(comentario => {
+    //     comentarios.innerHTML += `
+    //         <div class="comentario" data-id="${comentario.id}">
+    //             <h4>${comentario.email}</h4>
+    //             <p>${comentario.body}</p>
+    //         </div>
+    //     `
+    // });
+
+    // Renderizado con .map ***********************
+    comentarios.innerHTML = listado.map( comentario => {
+        return `
+            <div class="comentario" data-id="${comentario.id}">
+                <h4>${comentario.email}</h4>
+                <p>${comentario.body}</p>
+            </div>
+        `
+    }).join("")
+
+}
 
 
 /* ----------------------------- Mesa de trabajo ---------------------------- */
