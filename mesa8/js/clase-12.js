@@ -23,7 +23,7 @@ function consultaApi(endpoint) {
             //console.log(datoJs);
             renderizarElementos(datoJs)
         })
-        .catch( err => console.log(err.statusText))
+        .catch( err => console.log(err.status))
 }
 
 /* -------------------------------------------------------------------------- */
@@ -31,12 +31,17 @@ function consultaApi(endpoint) {
 /* -------------------------------------------------------------------------- */
 // Vamos a reimplementar la escucha del click lanzar las nuevas funciones.
 const boton = document.querySelector("button");
-const endpoint = 'https://jsonplaceholder.typicode.com/commentsa';
+const endpoint = 'https://jsonplaceholder.typicode.com/comments';
 
 boton.addEventListener("click", () => {
     //console.log("click para ver comentario . . . ");
     consultaApi(endpoint)
     //console.log("Fin de la carga de comentarios");
+
+    //Hacer disable el boton
+    boton.setAttribute("disabled", "");
+    boton.style.opacity = 0.5;
+
 })
 
 
@@ -68,7 +73,7 @@ function renderizarElementos(listado){
                 <p>${comentario.body}</p>
             </div>
         `
-    }).join("")
+    }).slice(0,10).join("")
 
 }
 
